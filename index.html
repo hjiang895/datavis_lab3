@@ -5,15 +5,15 @@
   <meta charset="utf-8" />
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Introduction to JavaScript</title>
+  <title>Population of European Cities</title>
 
   <!-- Load CSS files -->
 
 
   <!-- Milligram CSS -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 
   <!-- You CSS rules-->
   <!-- <link rel="stylesheet" href="style.css" /> -->
@@ -25,7 +25,7 @@
   <!-- <script defer src="barchart.js"></script>  -->
   <script src="https://cdn.jsdelivr.net/npm/d3-fetch@3"></script>
   <!-- Your code -->
-  <script defer type = "module" src="scatterplot.js"></script>
+  <script defer type = "module" src="script.js"></script>
 
 </head>
 <body>
@@ -36,7 +36,94 @@
     <div class="city-count"></div>
     <div class="population-plot"></div>
   </div>  
+
+  <!-- <div class="container">
+    <h2>
+      Building Heights
+    </h2>
+    <div class="building-count"></div>
+    <div class="building-height-plot"></div>
+  </div>   -->
 </body>
 
+
+<div class="container">
+
+    <div class="row">
+      <div class="column">
+        <div class="container">
+            <h2>
+              Building Heights
+            </h2>
+            <div class="building-count"></div>
+            <div class="building-height-plot"></div>
+          </div>  
+      </div>
+      <div class="column">
+        <div class="column">
+            <!-- <img class="image"/> -->
+        </div>
+        <div class="building-detail">
+            <img class="image"/>
+          <h4 class="building-name"></h4>
+          <table>
+            <tbody>
+              <tr>
+                <td>Height</td>
+                <td><span class="height"></span> ft</td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td><span class="city"></span></td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td><span class="country"></span></td>
+              </tr>
+              <tr>
+                <td>Floor</td>
+                <td><span class="floor"></span></td>
+              </tr>
+              <tr>
+                <td>Completed</td>
+                <td><span class="completed"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <div class="column">
+    <img class="image"/>
+</div>
+<div class="building-detail">
+    <img class="image"/>
+  <h4 class="building-name"></h4>
+  <table>
+    <tbody>
+      <tr>
+        <td>Height</td>
+        <td><span class="height"></span> ft</td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><span class="city"></span></td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td><span class="country"></span></td>
+      </tr>
+      <tr>
+        <td>Floor</td>
+        <td><span class="floor"></span></td>
+      </tr>
+      <tr>
+        <td>Completed</td>
+        <td><span class="completed"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
 
 </html>
