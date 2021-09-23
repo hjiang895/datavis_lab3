@@ -21,15 +21,13 @@
   <!-- Load Javascript files -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.1.1/d3.min.js"></script>
 
-  <!-- bar-chart rendering -->
-  <!-- <script defer src="barchart.js"></script>  -->
   <script src="https://cdn.jsdelivr.net/npm/d3-fetch@3"></script>
   <!-- Your code -->
-  <script defer type = "module" src="script.js"></script>
-
+  <script defer src="script.js"></script>
 </head>
+
 <body>
-  <div class="container">
+  <div class="container" style="margin-top:4%">
     <h2>
       Population in European countries
     </h2>
@@ -37,19 +35,8 @@
     <div class="population-plot"></div>
   </div>  
 
-  <!-- <div class="container">
-    <h2>
-      Building Heights
-    </h2>
-    <div class="building-count"></div>
-    <div class="building-height-plot"></div>
-  </div>   -->
-</body>
-
-
-<div class="container">
-
-    <div class="row">
+  <div class="container">
+    <div class="row" style="margin-top:10%">
       <div class="column">
         <div class="container">
             <h2>
@@ -59,12 +46,11 @@
             <div class="building-height-plot"></div>
           </div>  
       </div>
-      <div class="column">
-        <div class="column">
-            <!-- <img class="image"/> -->
+      <div class="column" style="margin-top:6%">
+        <img class="image"/>
         </div>
+        <div class="column" style="margin-top:6%">
         <div class="building-detail">
-            <img class="image"/>
           <h4 class="building-name"></h4>
           <table>
             <tbody>
@@ -94,36 +80,5 @@
       </div>
     </div>
 </div>
-<!-- <div class="column">
-    <img class="image"/>
-</div>
-<div class="building-detail">
-    <img class="image"/>
-  <h4 class="building-name"></h4>
-  <table>
-    <tbody>
-      <tr>
-        <td>Height</td>
-        <td><span class="height"></span> ft</td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td><span class="city"></span></td>
-      </tr>
-      <tr>
-        <td>Country</td>
-        <td><span class="country"></span></td>
-      </tr>
-      <tr>
-        <td>Floor</td>
-        <td><span class="floor"></span></td>
-      </tr>
-      <tr>
-        <td>Completed</td>
-        <td><span class="completed"></span></td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
+</body>
 </html>

@@ -1,14 +1,14 @@
 async function loadCityData() {
 	let cityData = await d3.csv('cities.csv', d=>{
 		return {
-		  ...d, // spread operator
-		  eu: d.eu==='true', // convert to boolean
+		  ...d, 
+		  eu: d.eu==='true',
 		  population: +d.population,
 		  x: +d.x,
 		  y: +d.y,
 		}
-	  }).then(data=>{
-		  return data;
+	//   }).then(data=>{
+	// 	  return data;
 	  }).then(data => {
 		  return data.filter(d => d.eu === true);
 	  });
@@ -24,7 +24,6 @@ async function loadBuildingData(){
 			height_px: +d.height_px,
 			floors: +d.floors,
 			// completed: d.completed==='true', 
-
 		}
 	}).then(data => {
 		return data.sort(function(a,b){
@@ -47,6 +46,7 @@ async function renderScatterPlot() {
 			.data(cityData)
 			.enter()
 			.append("circle")
+			.attr("fill", "orange")
 			.attr("cx", function(d) {
 				return d.x;
 			})
@@ -59,12 +59,12 @@ async function renderScatterPlot() {
 				}
 				return 8;
 			});
-	var labels = svg.selectAll("text")  // <-- Note "text", not "circle" or "rect"
+	var labels = svg.selectAll("text")  
 				.data(cityData)
 				.enter()
 				.append("text")  
 				.text(function(d) {
-					return `${d.city}, ${d.country}`;
+					return `${d.city}`;
 				})
 				.attr("opacity", function(d){
 					if (d.population < 1000000) {
@@ -73,14 +73,14 @@ async function renderScatterPlot() {
 					return 100;
 				}) 
 				.attr("x", function(d) {
-					return d.x + 15;
+					return d.x;
 				})
 				.attr("y", function(d) {
-					return d.y + 15;
+					return d.y + 25;
 				})
-				.attr("fill", "red")
+				.attr("fill", "black")
 				.attr("font-size", "11px")
-				.attr("text-anchor", "middle")  // <-- Same here!
+				.attr("text-anchor", "middle");
 }
 
 async function renderBarChart() {
@@ -95,106 +95,59 @@ async function renderBarChart() {
 				.data(buildingData)
 				.enter()
 				.append("rect")
-				.attr("x", 250)
+				.attr("x", 300)
 				.attr("y", function(d, i) {
-					return i * (25);
+					return i * (40);
 				})
-				.attr("height", 10)
+				.attr("height", 30)
 				.attr("width", function(d) {
 					return d.height_px;
 				})
+				.attr("fill", "orange")
 				.on("click", function(d, i) {
-					// Do something after clicking a bar
-					
 						d3.select('.image').attr("src", `img/${i.image}`);
+						d3.select('.city').text(i.city);
 						d3.select('.building-name').text(i.building);
 						d3.select('.height').text(i.height_ft);
-						d3.select('.city').text(i.city);
+						d3.select('.country').text(i.country);
+						d3.select('.floor').text(i.floors);
+						d3.select('.completed').text(i.completed);
 					});
-				// .on("click", function(d){
-				// 	// d3.select('.image').attr("src", `img/${d.image}`);
-				// 	d3.select('.building-name').text(function(d) {
-				// 		return d.building;
-				// 	})
-				// 	// d3.select('.building-name').text(d.building);
-				// 	// d3.select('.height').text(d.height_ft);
-				// 	// d3.select('.city').text(d.city);
-				// });
-
-	const labels = svg.selectAll("text")
+	const text = svg.selectAll("text")
 				.data(buildingData)
-				.enter()
-	
-				labels.append("text")
-				.text(function(d) {
-					return d.building;
-				})
-				.attr("opacity", "100")
-				.attr("dx", 50)
-				.attr("dy", function(d, i) {
-					return i * (25) + 25;
-				})
-				.attr("fill", "red")
-				.attr("font-size", "11px");
+				.enter();
+				
+	// adding labels 
+	text.append("text")
+	.text(function(d) {
+		return d.building;
+	})
+	.attr("opacity", "100")
+	.attr("dx", 0)
+	.attr("dy", function(d, i) {
+		return i * (40) + 25;
+	})
+	.attr("fill", "gray")
+	.attr("font-size", "20px");
 
-	// const heightLabels = svg.selectAll("text")
-	// 					.data(buildingData)
-	// 					.enter()
-						labels.append("text")
-						.text(function(d) {
-							return d.height_ft;
-						})
-						.attr("dy", function(d, i) {
-							return i * (25);
-						})
-						.attr("fill", "red")
-						.attr("font-size", "11px")
-						.attr("text-anchor", "end");
-}
-
-async function fillTableValues(){
-	let buildingData = await loadBuildingData(); 
-	const image = d3.select("image").select(".image")
-				.data(buildingData)
-				.enter()
-				.append("img")
-                .attr("src", function(d) {
-					return `img/${d.image}`;
-				})
-	const table = d3.select(".building-detail")
-				.data(buildingData)
-				.enter()
-	const building = table.select(".building-name")
-				.text(function(d) {
-					return d.building;
-				})
-	const height = table.select(".height")
-				.text(function(d) {
-					console.log(d.height_ft);
-					return d.height_ft;
-				});
-	const city = table.select(".city")
-				.text(function(d) {
-					console.log(d.city);
-					return d.city;
-				})
-	const country = table.select(".country")
-					.text(function(d) {
-						console.log(d.country);
-						return d.country;
-					})
-	const floor = table.select(".floor")
-					.text(function(d) {
-						console.log(d.floors);
-						return d.floors;
-					})
-	const completed = table.select(".completed")
-					.text(function(d) {
-						console.log(d.completed);
-						return d.completed;
-					})
+	// adding heights
+	text.append("text")
+	.text(function(d) {
+		return d.height_ft;
+	})
+	.attr("dx", function(d) {
+		if (d.height_px > 270) {
+			return d.height_px + 210;
+		}
+		return d.height_px + 280;
+	})
+	.attr("dy", function(d, i) {
+		return i * (40) + 20;
+	})
+	.attr("fill", "gray")
+	.attr("font-size", "11px")
+	.attr("text-anchor", "end");
 }
 
 renderScatterPlot();
 renderBarChart(); 
-fillTableValues();
